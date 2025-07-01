@@ -1,32 +1,87 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 3 - Overloaded Constructors
-6/16/2025
+Assignment 4 - Vectors
+6/17/2025
 */
 
 #include <iostream>
 
+#include "Menu.h"
 #include "Byte.h"
 
 using namespace std;
 
+void setValue();
+void add();
+void sub();
+void mul();
+void div();
+
+Menu m;
+Byte b;
+
 int main() {
-	int testAr[8] = { 1, 1, 0, 0, 0, 1, 1, 0 };
-	Byte biteDef;
-	Byte biteInt(77);
-	Byte biteAr(testAr);
+	int temp[8] = { 1, 0, 1, 1, 0, 0, 0, 1 };
+	Byte bAr(temp);
+	cout << "Array constructor passing 10110001: \nInt: " << bAr.toInt() << "\nString: " << bAr.toString() << endl;
+	m.waitKey();
+	m.addMenu("1. SetValue", setValue);
+	m.addMenu("2. Add", add);
+	m.addMenu("3. Sub", sub);
+	m.addMenu("4. Mul", mul);
+	m.addMenu("5. Div", div);
 
-	cout << "Default Constructor" << endl;
-	cout << "Int: " << biteDef.toInt() << endl;
-	cout << "String: " << biteDef.toString() << endl;
-
-	cout << "\nInteger Constructor Passing 77" << endl;
-	cout << "Int: " << biteInt.toInt() << endl;
-	cout << "String: " << biteInt.toString() << endl;
-
-	cout << "\nArray Constructor Passing 11000110" << endl;
-	cout << "Int: " << biteAr.toInt() << endl;
-	cout << "String: " << biteAr.toString() << endl;
+	m.runMenu();
 	return 0;
+}
+
+void setValue() {
+	int in;
+	system("CLS");
+	cout << "What would you like to set the value to?" << endl;
+	cin >> in;
+	b.setValue(in);
+	cout << "The value has been set to:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	m.waitKey();
+}
+
+void add() {
+	int in;
+	system("CLS");
+	cout << "What would you like to add?" << endl;
+	cin >> in;
+	b = b.add(in);
+	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	m.waitKey();
+}
+
+void sub() {
+	int in;
+	system("CLS");
+	cout << "What would you like to subtract?" << endl;
+	cin >> in;
+	b = b.sub(in);
+	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	m.waitKey();
+}
+
+void mul() {
+	int in;
+	system("CLS");
+	cout << "What would you like to multiply by?" << endl;
+	cin >> in;
+	b = b.mul(in);
+	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	m.waitKey();
+}
+
+void div() {
+	int in;
+	system("CLS");
+	cout << "What would you like to divide by?" << endl;
+	cin >> in;
+	b = b.div(in);
+	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	m.waitKey();
 }

@@ -1,12 +1,13 @@
 /*
 Byte.cpp
 Zoey Anderson
-Assignment 3 - Overloaded Constructors
-6/16/2025
+Assignment 4 - Vectors
+6/17/2025
 */
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Byte.h"
 
@@ -78,10 +79,14 @@ Byte::Byte() : Byte(0) {
 }
 
 Byte::Byte(int val) {
+	vector<int> temp(8, 0);
+	this->bits = temp;
 	this->setValue(val);
 }
 
 Byte::Byte(int ar[]) {
+	vector<int> temp(8, 0);
+	this->bits = temp;
 	for (int i = 0; i < 8; i++) {
 		if (ar[i] == 1 || ar[i] == 0) {		// input array verification
 			bits[7 - i] = ar[i];		// bits is reversed ar[]

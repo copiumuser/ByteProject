@@ -1,20 +1,22 @@
 /*
 Byte.h
 Zoey Anderson
-Assignment 3 - Overloaded Constructors
-6/16/2025
+Assignment 4 - Vectors
+6/17/2025
 */
 
 #ifndef BYTE
 #define BYTE
 
 #include <string>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 class Byte {
 private:
-	int bits[8];
+	vector<int> bits;
 
 	int bitsToInt();
 public:
