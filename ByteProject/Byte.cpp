@@ -1,8 +1,8 @@
 /*
 Byte.cpp
 Zoey Anderson
-Assignment 2 - Class Construction
-6/11/2025
+Assignment 3 - Overloaded Constructors
+6/16/2025
 */
 
 #include <iostream>
@@ -52,4 +52,43 @@ string Byte::toString() {
 
 int Byte::toInt() {
 	return bitsToInt();
+}
+
+Byte Byte::add(int val) {
+	Byte temp(this->toInt() + val);
+	return temp;
+}
+
+Byte Byte::sub(int val) {
+	Byte temp(this->toInt() - val);
+	return temp;
+}
+
+Byte Byte::mul(int val) {
+	Byte temp(this->toInt() * val);
+	return temp;
+}
+
+Byte Byte::div(int val) {
+	Byte temp(this->toInt() / val);
+	return temp;
+}
+
+Byte::Byte() : Byte(0) {
+}
+
+Byte::Byte(int val) {
+	this->setValue(val);
+}
+
+Byte::Byte(int ar[]) {
+	for (int i = 0; i < 8; i++) {
+		if (ar[i] == 1 || ar[i] == 0) {		// input array verification
+			bits[7 - i] = ar[i];		// bits is reversed ar[]
+		}
+		else {
+			cout << "Input array does not contain only 1s and 0s" << endl;
+			return;
+		}
+	}
 }

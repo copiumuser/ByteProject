@@ -1,14 +1,16 @@
 /*
 Byte.h
 Zoey Anderson
-Assignment 2 - Class Construction
-6/11/2025
+Assignment 3 - Overloaded Constructors
+6/16/2025
 */
 
 #ifndef BYTE
 #define BYTE
 
 #include <string>
+
+using std::string;
 
 class Byte {
 private:
@@ -18,8 +20,18 @@ private:
 public:
 	void setValue(int value);
 	int at(int index);
-	std::string toString();
+	string toString();
 	int toInt();
+
+	Byte add(int val);
+	Byte sub(int val);
+	Byte mul(int val);
+	Byte div(int val);
+
+	// constructors
+	Byte();
+	Byte(int val);
+	Byte(int ar[]);
 };
 
 #endif 

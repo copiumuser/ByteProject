@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 2 - Class Construction
-6/11/2025
+Assignment 3 - Overloaded Constructors
+6/16/2025
 */
 
 #include <iostream>
@@ -12,61 +12,21 @@ Assignment 2 - Class Construction
 using namespace std;
 
 int main() {
-	Byte bite;
+	int testAr[8] = { 1, 1, 0, 0, 0, 1, 1, 0 };
+	Byte biteDef;
+	Byte biteInt(77);
+	Byte biteAr(testAr);
 
-	cout << "\n99: \n" << endl;
-	bite.setValue(99);
+	cout << "Default Constructor" << endl;
+	cout << "Int: " << biteDef.toInt() << endl;
+	cout << "String: " << biteDef.toString() << endl;
 
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
+	cout << "\nInteger Constructor Passing 77" << endl;
+	cout << "Int: " << biteInt.toInt() << endl;
+	cout << "String: " << biteInt.toString() << endl;
 
-	cout << "\n147: \n" << endl;
-	bite.setValue(147);
-
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
-
-	cout << "\n0: \n" << endl;
-	bite.setValue(0);
-
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
-
-	cout << "\n255: \n" << endl;
-	bite.setValue(255);
-
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
-
-	cout << "\n-1: \n" << endl;
-	bite.setValue(-1);
-
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
-
-	cout << "\n256: \n" << endl;
-	bite.setValue(256);
-
-	for (int i = 0; i < 8; i++) {
-		cout << bite.at(i) << endl;
-	}
-	cout << "Int:    " << bite.toInt() << endl;
-	cout << "String: " << bite.toString() << endl;
-
+	cout << "\nArray Constructor Passing 11000110" << endl;
+	cout << "Int: " << biteAr.toInt() << endl;
+	cout << "String: " << biteAr.toString() << endl;
 	return 0;
 }
