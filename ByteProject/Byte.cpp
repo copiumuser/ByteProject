@@ -1,8 +1,8 @@
 /*
 Byte.cpp
 Zoey Anderson
-Assignment 4 - Vectors
-6/17/2025
+Assignment 5 - Operator Overloading
+6/24/2025
 */
 
 #include <iostream>
@@ -38,6 +38,9 @@ void Byte::setValue(int value) {
 }
 
 int Byte::at(int index) {
+	if (index < 0 || index > 7) {
+		return -1;
+	}
 	return bits[index];
 }
 
@@ -56,24 +59,97 @@ int Byte::toInt() {
 }
 
 Byte Byte::add(int val) {
-	Byte temp(this->toInt() + val);
-	return temp;
+	return this->toInt() + val;
 }
 
 Byte Byte::sub(int val) {
-	Byte temp(this->toInt() - val);
-	return temp;
+	return this->toInt() - val;
 }
 
 Byte Byte::mul(int val) {
-	Byte temp(this->toInt() * val);
-	return temp;
+	return this->toInt() * val;
 }
 
 Byte Byte::div(int val) {
-	Byte temp(this->toInt() / val);
-	return temp;
+	return this->toInt() / val;
 }
+
+// operator overloads
+
+Byte Byte::operator+(const int f) {
+	return this->add(f);
+}
+
+Byte Byte::operator+(Byte& f) {
+	return this->add(f.toInt());
+}
+
+Byte Byte::operator-(const int f) {
+	return this->sub(f);
+}
+
+Byte Byte::operator-(Byte& f) {
+	return this->sub(f.toInt());
+}
+
+Byte Byte::operator*(const int f) {
+	return this->mul(f);
+}
+
+Byte Byte::operator*(Byte& f) {
+	return this->mul(f.toInt());
+}
+
+Byte Byte::operator/(const int f) {
+	return this->div(f);
+}
+
+Byte Byte::operator/(Byte& f) {
+	return this->div(f.toInt());
+}
+
+Byte Byte::operator=(const int f) {
+	this->setValue(f);
+	return *this;
+}
+
+Byte Byte::operator=(Byte f) {
+	this->setValue(f.toInt());
+	return *this;
+}
+
+bool Byte::operator==(const int f) {
+	if (this->toInt() == f) {
+		return true;
+	}
+	return false;
+}
+
+bool Byte::operator==(Byte& f) {
+	if (this->toInt() == f.toInt()) {
+		return true;
+	}
+	return false;
+}
+
+bool Byte::operator!=(const int f) {
+	if (this->toInt() != f) {
+		return true;
+	}
+	return false;
+}
+
+bool Byte::operator!=(Byte& f) {
+	if (this->toInt() != f.toInt()) {
+		return true;
+	}
+	return false;
+}
+
+int Byte::operator[] (const int f) {
+	return this->at(f);
+}
+// constructors
 
 Byte::Byte() : Byte(0) {
 }

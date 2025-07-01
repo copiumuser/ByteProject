@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 4 - Vectors
-6/17/2025
+Assignment 5 - Operator Overloading
+6/24/2025
 */
 
 #include <iostream>
@@ -13,6 +13,9 @@ Assignment 4 - Vectors
 using namespace std;
 
 void setValue();
+void at();
+void equalTo();
+void notEqualTo();
 void add();
 void sub();
 void mul();
@@ -22,15 +25,14 @@ Menu m;
 Byte b;
 
 int main() {
-	int temp[8] = { 1, 0, 1, 1, 0, 0, 0, 1 };
-	Byte bAr(temp);
-	cout << "Array constructor passing 10110001: \nInt: " << bAr.toInt() << "\nString: " << bAr.toString() << endl;
-	m.waitKey();
 	m.addMenu("1. SetValue", setValue);
-	m.addMenu("2. Add", add);
-	m.addMenu("3. Sub", sub);
-	m.addMenu("4. Mul", mul);
-	m.addMenu("5. Div", div);
+	m.addMenu("2. At", at);
+	m.addMenu("3. Equal To", equalTo);
+	m.addMenu("4. Not Equal To", notEqualTo);
+	m.addMenu("5. Add", add);
+	m.addMenu("6. Sub", sub);
+	m.addMenu("7. Mul", mul);
+	m.addMenu("8. Div", div);
 
 	m.runMenu();
 	return 0;
@@ -46,42 +48,183 @@ void setValue() {
 	m.waitKey();
 }
 
+void at() {
+	int in;
+	system("CLS");
+	cout << "What index would you like to see?" << endl;
+	cin >> in;
+	cout << "The value at " << in << " is " << b[in] << endl;
+	m.waitKey();
+}
+
+void equalTo() {
+	int in;
+	char type;
+	bool equal;
+	Byte temp;
+	system("CLS");
+	cout << "What value would you like to compare to?" << endl;
+	cin >> in;
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		equal = b == temp;
+		break;
+	case 'p':
+		equal = b == in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
+	cout << b.toInt() << " is ";
+	if (!equal) {
+		cout << "not ";
+	}
+	cout << "equal to " << in << endl;
+	m.waitKey();
+}
+
+void notEqualTo() {
+	int in;
+	char type;
+	bool equal;
+	Byte temp;
+	system("CLS");
+	cout << "What value would you like to compare to?" << endl;
+	cin >> in;
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		equal = b != temp;
+		break;
+	case 'p':
+		equal = b != in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
+	cout << b.toInt() << " is ";
+	if (equal) {
+		cout << "not ";
+	}
+	cout << "equal to " << in << endl;
+	m.waitKey();
+}
+
 void add() {
 	int in;
+	char type;
+	Byte temp;
 	system("CLS");
 	cout << "What would you like to add?" << endl;
 	cin >> in;
-	b = b.add(in);
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		b = (b + temp);
+		break;
+	case 'p':
+		b = b + in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
 	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
 	m.waitKey();
 }
 
 void sub() {
 	int in;
+	char type;
+	Byte temp;
 	system("CLS");
 	cout << "What would you like to subtract?" << endl;
 	cin >> in;
-	b = b.sub(in);
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		b = b - temp;
+		break;
+	case 'p':
+		b = b - in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
 	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
 	m.waitKey();
 }
 
 void mul() {
 	int in;
+	char type;
+	Byte temp;
 	system("CLS");
 	cout << "What would you like to multiply by?" << endl;
 	cin >> in;
-	b = b.mul(in);
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		b = b * temp;
+		break;
+	case 'p':
+		b = b * in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
 	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
 	m.waitKey();
 }
 
 void div() {
 	int in;
+	char type;
+	Byte temp;
 	system("CLS");
 	cout << "What would you like to divide by?" << endl;
 	cin >> in;
-	b = b.div(in);
+	cout << "Would you like to perform this operation with a complex or primitive type? (c/p)" << endl;
+	cin >> type;
+	type = tolower(type);
+	switch (type) {
+	case 'c':
+		temp = in;
+		b = b / temp;
+		break;
+	case 'p':
+		b = b / in;
+		break;
+	default:
+		cout << "Invalid Type Selection" << endl;
+		m.waitKey();
+		return;
+	}
 	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
 	m.waitKey();
 }

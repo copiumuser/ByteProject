@@ -1,8 +1,8 @@
 /*
 Byte.h
 Zoey Anderson
-Assignment 4 - Vectors
-6/17/2025
+Assignment 5 - Operator Overloading
+6/24/2025
 */
 
 #ifndef BYTE
@@ -29,6 +29,30 @@ public:
 	Byte sub(int val);
 	Byte mul(int val);
 	Byte div(int val);
+
+	// operator overloads
+	Byte operator+ (const int f);
+	Byte operator+ (Byte& f);
+
+	Byte operator- (const int f);
+	Byte operator- (Byte& f);
+
+	Byte operator* (const int f);
+	Byte operator* (Byte& f);
+
+	Byte operator/ (const int f);
+	Byte operator/ (Byte& f);
+
+	Byte operator= (const int f);
+	Byte operator= (Byte f);
+
+	bool operator== (const int f);
+	bool operator== (Byte& f);
+
+	bool operator!= (const int f);
+	bool operator!= (Byte& f);
+
+	int operator[] (const int f);
 
 	// constructors
 	Byte();
