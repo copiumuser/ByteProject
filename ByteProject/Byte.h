@@ -1,8 +1,8 @@
 /*
 Byte.h
 Zoey Anderson
-Assignment 6 - Integration
-6/25/2025
+Assignment 7 - Dynamic Memory
+7/1/2025
 */
 
 #ifndef BYTE

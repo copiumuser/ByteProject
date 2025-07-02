@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 6 - Integration
-6/25/2025
+Assignment 7 - Dynamic Memory
+7/1/2025
 */
 
 #include <iostream>
@@ -22,9 +22,14 @@ void mul();
 void div();
 
 Menu m;
-Byte b;
+Byte* b = new Byte;
 
 int main() {
+	if (b == NULL) {
+		cout << "Unable to allocate memory for Byte object" << endl;
+		m.waitKey();
+		return 0;
+	}
 	m.addMenu("1. SetValue", setValue);
 	m.addMenu("2. At", at);
 	m.addMenu("3. Equal To", equalTo);
@@ -35,6 +40,7 @@ int main() {
 	m.addMenu("8. Div", div);
 
 	m.runMenu();
+	delete b;
 	return 0;
 }
 
@@ -43,8 +49,8 @@ void setValue() {
 	system("CLS");
 	cout << "What would you like to set the value to?" << endl;
 	cin >> in;
-	b.setValue(in);
-	cout << "The value has been set to:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	b->setValue(in);
+	cout << "The value has been set to:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
 	m.waitKey();
 }
 
@@ -53,7 +59,7 @@ void at() {
 	system("CLS");
 	cout << "What index would you like to see?" << endl;
 	cin >> in;
-	cout << "The value at " << in << " is " << b[in] << endl;
+	cout << "The value at " << in << " is " << b->at(in) << endl;
 	m.waitKey();
 }
 
@@ -61,7 +67,8 @@ void equalTo() {
 	int in;
 	char type;
 	bool equal;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What value would you like to compare to?" << endl;
 	cin >> in;
@@ -70,18 +77,18 @@ void equalTo() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		equal = b == temp;
+		*temp = in;
+		equal = *b == *temp;
 		break;
 	case 'p':
-		equal = b == in;
+		equal = *b == in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << b.toInt() << " is ";
+	cout << b->toInt() << " is ";
 	if (!equal) {
 		cout << "not ";
 	}
@@ -93,7 +100,8 @@ void notEqualTo() {
 	int in;
 	char type;
 	bool equal;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What value would you like to compare to?" << endl;
 	cin >> in;
@@ -102,18 +110,18 @@ void notEqualTo() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		equal = b != temp;
+		*temp = in;
+		equal = *b != *temp;
 		break;
 	case 'p':
-		equal = b != in;
+		equal = *b != in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << b.toInt() << " is ";
+	cout << b->toInt() << " is ";
 	if (equal) {
 		cout << "not ";
 	}
@@ -124,7 +132,8 @@ void notEqualTo() {
 void add() {
 	int in;
 	char type;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What would you like to add?" << endl;
 	cin >> in;
@@ -133,25 +142,26 @@ void add() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		b = (b + temp);
+		*temp = in;
+		*b = (*b + *temp);
 		break;
 	case 'p':
-		b = b + in;
+		*b = *b + in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
 	m.waitKey();
 }
 
 void sub() {
 	int in;
 	char type;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What would you like to subtract?" << endl;
 	cin >> in;
@@ -160,25 +170,26 @@ void sub() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		b = b - temp;
+		*temp = in;
+		*b = *b - *temp;
 		break;
 	case 'p':
-		b = b - in;
+		*b = *b - in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
 	m.waitKey();
 }
 
 void mul() {
 	int in;
 	char type;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What would you like to multiply by?" << endl;
 	cin >> in;
@@ -187,25 +198,26 @@ void mul() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		b = b * temp;
+		*temp = in;
+		*b = *b * *temp;
 		break;
 	case 'p':
-		b = b * in;
+		*b = *b * in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
 	m.waitKey();
 }
 
 void div() {
 	int in;
 	char type;
-	Byte temp;
+	Byte* temp;
+	temp = new Byte;
 	system("CLS");
 	cout << "What would you like to divide by?" << endl;
 	cin >> in;
@@ -214,17 +226,17 @@ void div() {
 	type = tolower(type);
 	switch (type) {
 	case 'c':
-		temp = in;
-		b = b / temp;
+		*temp = in;
+		*b = *b / *temp;
 		break;
 	case 'p':
-		b = b / in;
+		*b = *b / in;
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
 		m.waitKey();
 		return;
 	}
-	cout << "The value is now:\nInt: " << b.toInt() << "\nString: " << b.toString() << endl;
+	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
 	m.waitKey();
 }
