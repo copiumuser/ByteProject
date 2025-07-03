@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 7 - Dynamic Memory
-7/1/2025
+Assignment 8 - Namespaces
+7/3/2025
 */
 
 #include <iostream>
@@ -10,7 +10,14 @@ Assignment 7 - Dynamic Memory
 #include "Menu.h"
 #include "Byte.h"
 
+namespace zoey {
+	// declare byte and menu within zoey namespace to avoid global declaration and code duplication in menu
+	Menu* m = Menu::instance();
+	Byte* b = new Byte;
+}
+
 using namespace std;
+using namespace zoey;
 
 void setValue();
 void at();
@@ -21,25 +28,22 @@ void sub();
 void mul();
 void div();
 
-Menu m;
-Byte* b = new Byte;
-
 int main() {
 	if (b == NULL) {
 		cout << "Unable to allocate memory for Byte object" << endl;
-		m.waitKey();
+		m->waitKey();
 		return 0;
 	}
-	m.addMenu("1. SetValue", setValue);
-	m.addMenu("2. At", at);
-	m.addMenu("3. Equal To", equalTo);
-	m.addMenu("4. Not Equal To", notEqualTo);
-	m.addMenu("5. Add", add);
-	m.addMenu("6. Sub", sub);
-	m.addMenu("7. Mul", mul);
-	m.addMenu("8. Div", div);
+	m->addMenu("1. SetValue", setValue);
+	m->addMenu("2. At", at);
+	m->addMenu("3. Equal To", equalTo);
+	m->addMenu("4. Not Equal To", notEqualTo);
+	m->addMenu("5. Add", add);
+	m->addMenu("6. Sub", sub);
+	m->addMenu("7. Mul", mul);
+	m->addMenu("8. Div", div);
 
-	m.runMenu();
+	m->runMenu();
 	delete b;
 	return 0;
 }
@@ -51,7 +55,7 @@ void setValue() {
 	cin >> in;
 	b->setValue(in);
 	cout << "The value has been set to:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void at() {
@@ -60,7 +64,7 @@ void at() {
 	cout << "What index would you like to see?" << endl;
 	cin >> in;
 	cout << "The value at " << in << " is " << b->at(in) << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void equalTo() {
@@ -85,7 +89,7 @@ void equalTo() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << b->toInt() << " is ";
@@ -93,7 +97,7 @@ void equalTo() {
 		cout << "not ";
 	}
 	cout << "equal to " << in << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void notEqualTo() {
@@ -118,7 +122,7 @@ void notEqualTo() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << b->toInt() << " is ";
@@ -126,7 +130,7 @@ void notEqualTo() {
 		cout << "not ";
 	}
 	cout << "equal to " << in << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void add() {
@@ -150,11 +154,11 @@ void add() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void sub() {
@@ -178,11 +182,11 @@ void sub() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void mul() {
@@ -206,11 +210,11 @@ void mul() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
-	m.waitKey();
+	m->waitKey();
 }
 
 void div() {
@@ -234,9 +238,9 @@ void div() {
 		break;
 	default:
 		cout << "Invalid Type Selection" << endl;
-		m.waitKey();
+		m->waitKey();
 		return;
 	}
 	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
-	m.waitKey();
+	m->waitKey();
 }

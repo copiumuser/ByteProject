@@ -1,8 +1,8 @@
 /*
 Menu.h
 Zoey Anderson
-Assignment 7 - Dynamic Memory
-7/1/2025
+Assignment 8 - Namespaces
+7/3/2025
 */
 
 #ifndef MENU
@@ -12,22 +12,27 @@ Assignment 7 - Dynamic Memory
 
 using std::vector;
 
-struct MenuItem {
-	void (*func)();
-	char descript[50];
-};
+namespace zoey {
+	struct MenuItem {
+		void (*func)();
+		char descript[50];
+	};
 
-class Menu {
-private:
-	vector<MenuItem> mi;
-	int count;
-	void runSelection();
+	class Menu {
+	private:
+		vector<MenuItem> mi;
+		int count;
+		void runSelection();
+		static Menu* pInstance;
 
-public:
-	Menu();
-	void addMenu(const char* description, void(*f)());
-	void runMenu();
-	void waitKey();
-};
+		Menu() : count(0) {}
 
+	public:
+		void addMenu(const char* description, void(*f)());
+		void runMenu();
+		void waitKey();
+
+		static Menu* instance();
+	};
+}
 #endif
