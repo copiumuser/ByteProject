@@ -1,19 +1,21 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 8 - Namespaces
-7/3/2025
+Midterm
+7/9/2025
 */
 
 #include <iostream>
 
 #include "Menu.h"
 #include "Byte.h"
+#include "RandomByte.h"
 
 namespace zoey {
 	// declare byte and menu within zoey namespace to avoid global declaration and code duplication in menu
 	Menu* m = Menu::instance();
 	Byte* b = new Byte;
+	RandomByte* rB = new RandomByte;
 }
 
 using namespace std;
@@ -27,6 +29,9 @@ void add();
 void sub();
 void mul();
 void div();
+void generateNRandomBytes();
+void randomByteMathDemo();
+void randomByteStatistics(); 
 
 int main() {
 	if (b == NULL) {
@@ -42,6 +47,10 @@ int main() {
 	m->addMenu("6. Sub", sub);
 	m->addMenu("7. Mul", mul);
 	m->addMenu("8. Div", div);
+	m->addMenu("9. Generate N Random Bytes", generateNRandomBytes);
+	m->addMenu("10. Random Byte Math Demo", randomByteMathDemo);
+	m->addMenu("11. Random Byte Statistics", randomByteStatistics);
+
 
 	m->runMenu();
 	delete b;
@@ -242,5 +251,63 @@ void div() {
 		return;
 	}
 	cout << "The value is now:\nInt: " << b->toInt() << "\nString: " << b->toString() << endl;
+	m->waitKey();
+}
+
+void generateNRandomBytes() {
+	int in;
+	system("CLS");
+	cout << "What would you like to set N to?" << endl;
+	cin >> in;
+	for (int i = 0; i < in; i++) {
+		Byte temp = rB->nextByte();
+		cout << "\nN: " << i << "\nInt: " << temp.toInt() << "\nString: " << temp.toString() << endl;
+	}
+	m->waitKey();
+}
+
+void randomByteMathDemo() {
+	int temp1 = rB->nextInt();
+	int temp2 = rB->nextInt();
+	cout << "Byte 1: " << temp1 << "\nByte 2: " << temp2 << endl;
+	cout << "Byte 1 + Byte 2 = " << temp1 + temp2 << endl;
+	cout << "Byte 1 - Byte 2 = " << temp1 - temp2 << endl;
+	cout << "Byte 1 * Byte 2 = " << temp1 * temp2 << endl;
+	cout << "Byte 1 / Byte 2 = " << temp1 / temp2 << endl;
+	m->waitKey();
+}
+
+void randomByteStatistics() {
+	int in;
+	double average = 0;
+	int min = 999999999;	// set very high so it will be greater than the set range
+	int max = 0;
+	int ones = 0;
+	int zeros = 0;
+	system("CLS");
+	cout << "What would you like to set N to?" << endl;
+	cin >> in;
+	for (int i = 0; i < in; i++) {
+		Byte temp = rB->nextByte();
+		if (temp.toInt() <= min) {
+			min = temp.toInt();
+		}
+		if (temp.toInt() >= max) {
+			max = temp.toInt();
+		}
+		average += temp.toInt();
+		average /= 2;
+		string tempStr = temp.toString();
+		for (int i = 0; i < tempStr.length(); i++) {
+			if (tempStr[i] == '1') {
+				ones++;
+			}
+			else {
+				zeros++;
+			}
+		}
+	}
+	cout << "Minimum: " << min << "\nMaximum: " << max << "\nAverage: " << average <<
+		"\nTotal Ones: " << ones << "\nTotal Zeros: " << zeros << endl;
 	m->waitKey();
 }

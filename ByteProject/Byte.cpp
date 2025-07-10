@@ -1,8 +1,8 @@
 /*
 Byte.cpp
 Zoey Anderson
-Assignment 8 - Namespaces
-7/3/2025
+Midterm
+7/9/2025
 */
 
 #include <iostream>
