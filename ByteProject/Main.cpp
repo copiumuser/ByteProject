@@ -6,6 +6,11 @@ Midterm
 */
 
 #include <iostream>
+#include <random>
+#include <vector>
+#include <string>
+#include <ostream>
+#include <fstream>
 
 #include "Menu.h"
 #include "Byte.h"
@@ -32,8 +37,11 @@ void div();
 void generateNRandomBytes();
 void randomByteMathDemo();
 void randomByteStatistics(); 
+void generateRandom();
+void parseFile();
 
 int main() {
+	srand(static_cast<unsigned int>(time(0)));
 	if (b == NULL) {
 		cout << "Unable to allocate memory for Byte object" << endl;
 		m->waitKey();
@@ -50,6 +58,8 @@ int main() {
 	m->addMenu("9. Generate N Random Bytes", generateNRandomBytes);
 	m->addMenu("10. Random Byte Math Demo", randomByteMathDemo);
 	m->addMenu("11. Random Byte Statistics", randomByteStatistics);
+	m->addMenu("12. Generate Random", generateRandom);
+	m->addMenu("13. Parse File", parseFile);
 
 
 	m->runMenu();
@@ -309,5 +319,45 @@ void randomByteStatistics() {
 	}
 	cout << "Minimum: " << min << "\nMaximum: " << max << "\nAverage: " << average <<
 		"\nTotal Ones: " << ones << "\nTotal Zeros: " << zeros << endl;
+	m->waitKey();
+}
+
+void generateRandom() {
+	ofstream outFile("Numbers.txt");
+	if (!outFile) {
+		cout << "Unable to open file to write" << endl;
+	}
+	for (int i = 0; i < 100; i++) {
+		double r = (((double)rand() / (double)RAND_MAX) * (250 - 1)) + 1;
+		outFile << r << endl;
+	}
+	outFile.close();
+	m->waitKey();
+}
+
+void parseFile() {
+	vector<int> nums;
+	ifstream inFile("Numbers.txt");
+	if (!inFile) {
+		cout << "Unable to open file to read" << endl;
+	}
+	string in;
+	while (inFile >> in) {
+		in = in.substr(0, in.find_first_of("."));
+		nums.push_back(stoi(in));
+	}
+	inFile.close();
+
+	ofstream outFile("Binary.txt");
+	if (!outFile) {
+		cout << "Unable to open file to write" << endl;
+	}
+	int numsSize = nums.size();
+	for (int i = 0; i < numsSize; i++) {
+		Byte temp(nums.back());
+		nums.pop_back();
+		outFile << temp.toInt() << " - binary: " << temp.toString() << endl;
+	}
+	outFile.close();
 	m->waitKey();
 }
