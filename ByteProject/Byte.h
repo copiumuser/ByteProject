@@ -1,24 +1,22 @@
 /*
 Byte.h
 Zoey Anderson
-Midterm
-7/9/2025
+Assignment 11 - Inheritance
+7/14/2025
 */
 
 #ifndef BYTE
 #define BYTE
 
 #include <string>
-#include <vector>
+
+#include "CheckedArray.h"
 
 using std::string;
-using std::vector;
 
 namespace zoey {
-	class Byte {
+	class Byte : public CheckedArray {
 	private:
-		vector<int> bits;
-
 		int bitsToInt();
 	public:
 		void setValue(int value);

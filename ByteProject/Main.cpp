@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Midterm
-7/9/2025
+Assignment 11 - Inheritance
+7/14/2025
 */
 
 #include <iostream>
@@ -15,6 +15,7 @@ Midterm
 #include "Menu.h"
 #include "Byte.h"
 #include "RandomByte.h"
+#include "CheckedArray.h"
 
 namespace zoey {
 	// declare byte and menu within zoey namespace to avoid global declaration and code duplication in menu

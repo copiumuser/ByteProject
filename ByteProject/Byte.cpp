@@ -1,13 +1,12 @@
 /*
 Byte.cpp
 Zoey Anderson
-Midterm
-7/9/2025
+Assignment 11 - Inheritance
+7/14/2025
 */
 
 #include <iostream>
 #include <string>
-#include <vector>
 
 #include "Byte.h"
 
@@ -19,7 +18,7 @@ namespace zoey {
 		int total = 0;
 
 		for (int i = 0; i < 8; i++) {
-			total += bits[i] * posValue;	// increase the total by posValue if bits[i] = 1
+			total += at(i) * posValue;	// increase the total by posValue if bits[i] = 1
 			posValue *= 2;					// multiply the posValue by 2
 		}
 
@@ -33,23 +32,20 @@ namespace zoey {
 		}
 
 		for (int i = 0; i < 8; i++) {
-			bits[i] = value & 1;	// check whether the first bit of value is 1
+			set(i, value & 1);	// check whether the first bit of value is 1
 			value = value >> 1;		// shift value to the right by 1 (multiply the position value by 2)
 		}
 	}
 
 	int Byte::at(int index) {
-		if (index < 0 || index > 7) {
-			return -1;
-		}
-		return bits[index];
+		return CheckedArray::at(index);
 	}
 
 	string Byte::toString() {
 		string out = "";
 
 		for (int i = 7; i > -1; i--) {		// loop is counting down to reverse the order of the bits[] values
-			out += to_string(bits[i]);
+			out += to_string(at(i));
 		}
 
 		return out;
@@ -155,18 +151,14 @@ namespace zoey {
 	Byte::Byte() : Byte(0) {
 	}
 
-	Byte::Byte(int val) {
-		vector<int> temp(8, 0);
-		this->bits = temp;
+	Byte::Byte(int val) : CheckedArray(8) {
 		this->setValue(val);
 	}
 
-	Byte::Byte(int ar[]) {
-		vector<int> temp(8, 0);
-		this->bits = temp;
+	Byte::Byte(int ar[]) : CheckedArray(8) {
 		for (int i = 0; i < 8; i++) {
 			if (ar[i] == 1 || ar[i] == 0) {		// input array verification
-				bits[7 - i] = ar[i];		// bits is reversed ar[]
+				set(7 - i, ar[i]);		// bits is reversed ar[]
 			}
 			else {
 				cout << "Input array does not contain only 1s and 0s" << endl;
