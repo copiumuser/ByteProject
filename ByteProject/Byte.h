@@ -1,8 +1,8 @@
 /*
-Byte.h
+Main.cpp
 Zoey Anderson
-Assignment 11 - Inheritance
-7/14/2025
+Assignment 12 - Polymorphism
+7/17/2025
 */
 
 #ifndef BYTE
@@ -20,8 +20,7 @@ namespace zoey {
 		int bitsToInt();
 	public:
 		void setValue(int value);
-		int at(int index);
-		string toString();
+		string toString() const override;
 		int toInt();
 
 		Byte add(int val);
@@ -50,8 +49,6 @@ namespace zoey {
 
 		bool operator!= (const int f);
 		bool operator!= (Byte& f);
-
-		int operator[] (const int f);
 
 		// constructors
 		Byte();

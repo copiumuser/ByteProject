@@ -1,11 +1,12 @@
 /*
-CheckedArray.cpp
+Main.cpp
 Zoey Anderson
-Assignment 11 - Inheritance
-7/14/2025
+Assignment 12 - Polymorphism
+7/17/2025
 */
 
 #include <iostream>
+#include <string>
 
 #include "CheckedArray.h"
 
@@ -15,7 +16,7 @@ using namespace zoey;
 // accessors
 
 int CheckedArray::at(int index) const {
-	if (index < this->size && ar != nullptr) {
+	if (index < this->getSize() && index >= 0 && ar != nullptr) {
 		return ar[index];
 	}
 	return 0;
@@ -27,6 +28,14 @@ int CheckedArray::operator[] (int index) const{
 
 int CheckedArray::getSize() const {
 	return this->size;
+}
+
+string CheckedArray::toString() const {
+	string temp = "";
+	for (int i = 0; i < this->getSize(); i++) {
+		temp += to_string(ar[i]);
+	}
+	return temp;
 }
 
 // mutators

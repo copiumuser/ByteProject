@@ -1,12 +1,13 @@
 /*
-Byte.cpp
+Main.cpp
 Zoey Anderson
-Assignment 11 - Inheritance
-7/14/2025
+Assignment 12 - Polymorphism
+7/17/2025
 */
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include "Byte.h"
 
@@ -37,18 +38,10 @@ namespace zoey {
 		}
 	}
 
-	int Byte::at(int index) {
-		return CheckedArray::at(index);
-	}
-
-	string Byte::toString() {
-		string out = "";
-
-		for (int i = 7; i > -1; i--) {		// loop is counting down to reverse the order of the bits[] values
-			out += to_string(at(i));
-		}
-
-		return out;
+	string Byte::toString() const {
+		string temp = CheckedArray::toString();
+		reverse(temp.begin(), temp.end());
+		return temp;
 	}
 
 	int Byte::toInt() {
@@ -142,11 +135,6 @@ namespace zoey {
 		}
 		return false;
 	}
-
-	int Byte::operator[] (const int f) {
-		return this->at(f);
-	}
-	// constructors
 
 	Byte::Byte() : Byte(0) {
 	}

@@ -1,8 +1,8 @@
 /*
-CheckedArray.h
+Main.cpp
 Zoey Anderson
-Assignment 11 - Inheritance
-7/14/2025
+Assignment 12 - Polymorphism
+7/17/2025
 */
 
 #ifndef CHECKEDARRAY
@@ -18,8 +18,9 @@ namespace zoey {
 	public:
 		// accessors
 
-		int at(int index) const;
-		int operator[] (int index) const;
+		virtual int at(int index) const;
+		virtual int operator[] (int index) const;
+		virtual std::string toString() const;
 		int getSize() const;
 
 		// mutators

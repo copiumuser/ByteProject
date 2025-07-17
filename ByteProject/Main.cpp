@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 11 - Inheritance
-7/14/2025
+Assignment 12 - Polymorphism
+7/17/2025
 */
 
 #include <iostream>
