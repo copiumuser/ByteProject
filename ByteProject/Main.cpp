@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 12 - Polymorphism
-7/17/2025
+Assignment 13 - Exceptions
+7/22/2025
 */
 
 #include <iostream>
@@ -11,6 +11,7 @@ Assignment 12 - Polymorphism
 #include <string>
 #include <ostream>
 #include <fstream>
+#include <exception>
 
 #include "Menu.h"
 #include "Byte.h"
@@ -40,6 +41,7 @@ void randomByteMathDemo();
 void randomByteStatistics(); 
 void generateRandom();
 void parseFile();
+void errorDemo();
 
 int main() {
 	srand(static_cast<unsigned int>(time(0)));
@@ -61,6 +63,7 @@ int main() {
 	m->addMenu("11. Random Byte Statistics", randomByteStatistics);
 	m->addMenu("12. Generate Random", generateRandom);
 	m->addMenu("13. Parse File", parseFile);
+	m->addMenu("14. Error Demo", errorDemo);
 
 
 	m->runMenu();
@@ -360,5 +363,23 @@ void parseFile() {
 		outFile << temp.toInt() << " - binary: " << temp.toString() << endl;
 	}
 	outFile.close();
+	m->waitKey();
+}
+
+void errorDemo() {
+	cout << "At(-1): " << endl;
+	try {
+		cout << b->at(-1) << endl;
+	}
+	catch (string msg) {
+		cout << msg << endl;
+	}
+	cout << "\nCheckedArray t(-1): " << endl;
+	try {
+		CheckedArray t(-1);
+	}
+	catch (string msg) {
+		cout << msg << endl;
+	}
 	m->waitKey();
 }

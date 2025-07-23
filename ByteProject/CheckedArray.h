@@ -1,12 +1,14 @@
 /*
-Main.cpp
+CheckedArray.h
 Zoey Anderson
-Assignment 12 - Polymorphism
-7/17/2025
+Assignment 13 - Exceptions
+7/22/2025
 */
 
 #ifndef CHECKEDARRAY
 #define CHECKEDARRAY
+
+#include <exception>
 
 namespace zoey {
 
@@ -37,6 +39,19 @@ namespace zoey {
 		// destructor
 
 		~CheckedArray();
+	};
+
+	class CheckedArrayException : public std::exception {
+	private:
+		std::string message;
+
+	public:
+		const char* what() const override;
+
+		// constructors
+
+		CheckedArrayException() : CheckedArrayException("Checked Array Error") {}
+		CheckedArrayException(std::string inMessage);
 	};
 
 }

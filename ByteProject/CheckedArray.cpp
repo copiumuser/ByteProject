@@ -1,12 +1,13 @@
 /*
-Main.cpp
+CheckedArray.cpp
 Zoey Anderson
-Assignment 12 - Polymorphism
-7/17/2025
+Assignment 13 - Exceptions
+7/22/2025
 */
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 #include "CheckedArray.h"
 
@@ -16,8 +17,16 @@ using namespace zoey;
 // accessors
 
 int CheckedArray::at(int index) const {
-	if (index < this->getSize() && index >= 0 && ar != nullptr) {
-		return ar[index];
+	if (index < this->getSize() && index >= 0) {	// nested if statements for accurate error messages
+		if (ar != nullptr) {
+			return ar[index];
+		}
+		else {
+			throw string("Array is Null");
+		}
+	} 
+	else {
+		throw string("Index is out of Bounds");
 	}
 	return 0;
 }
@@ -41,6 +50,9 @@ string CheckedArray::toString() const {
 // mutators
 
 bool CheckedArray::initialize(int size, int val) {
+	if (size <= 0) {	// check for valid size
+		return false;
+	}
 	if (ar != nullptr) {
 		delete[] ar;
 		ar = nullptr;
@@ -58,8 +70,17 @@ bool CheckedArray::initialize(int size, int val) {
 }
 
 void CheckedArray::set(int index, int val) {
-	if (index <= this->size && ar != nullptr) {
-		ar[index] = val;
+	if (index < this->getSize() && index >= 0) {	// nested if statements for accurate error messages
+		if (ar != nullptr) {
+			ar[index] = val;
+			return;
+		}
+		else {
+			throw string("Array is Null");
+		}
+	}
+	else {
+		throw string("Index is out of Bounds");
 	}
 	return;
 }
@@ -70,14 +91,11 @@ CheckedArray::CheckedArray() : CheckedArray(10) {}
 
 CheckedArray::CheckedArray(int size) {
 	if (!this->initialize(size)) {
-		cout << "Unable to allocate memory" << endl;
+		throw string("Unable to Allocate Memory");
 	}
 }
 
-CheckedArray::CheckedArray(const CheckedArray& f) {
-	if (!this->initialize(f.getSize())) {
-		cout << "Unable to allocate memory" << endl;
-	}
+CheckedArray::CheckedArray(const CheckedArray& f) : CheckedArray(f.getSize()) {
 	for (int i = 0; i < f.getSize(); i++) {
 		this->set(i, f[i]);
 	}
@@ -90,4 +108,16 @@ CheckedArray::~CheckedArray() {
         delete[] ar;
         ar = nullptr;
     }
+}
+
+// Checked Array Exception
+
+const char* CheckedArrayException::what() const {
+	return this->message.c_str();
+}
+
+// constructors
+
+CheckedArrayException::CheckedArrayException(string inMessage) {
+	this->message = inMessage;
 }

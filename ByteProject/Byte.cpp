@@ -1,8 +1,8 @@
 /*
-Main.cpp
+Byte.cpp
 Zoey Anderson
-Assignment 12 - Polymorphism
-7/17/2025
+Assignment 13 - Exceptions
+7/22/2025
 */
 
 #include <iostream>
@@ -18,9 +18,14 @@ namespace zoey {
 		int posValue = 1;
 		int total = 0;
 
-		for (int i = 0; i < 8; i++) {
-			total += at(i) * posValue;	// increase the total by posValue if bits[i] = 1
-			posValue *= 2;					// multiply the posValue by 2
+		try {
+			for (int i = 0; i < 8; i++) {
+				total += at(i) * posValue;	// increase the total by posValue if bits[i] = 1
+				posValue *= 2;					// multiply the posValue by 2
+			}
+		}
+		catch (string msg) {
+			throw(msg);
 		}
 
 		return total;
@@ -33,15 +38,25 @@ namespace zoey {
 		}
 
 		for (int i = 0; i < 8; i++) {
-			set(i, value & 1);	// check whether the first bit of value is 1
+			try {
+				set(i, value & 1);	// check whether the first bit of value is 1
+			}
+			catch (string msg) {
+				throw(msg);
+			}
 			value = value >> 1;		// shift value to the right by 1 (multiply the position value by 2)
 		}
 	}
 
 	string Byte::toString() const {
-		string temp = CheckedArray::toString();
-		reverse(temp.begin(), temp.end());
-		return temp;
+		try {
+			string temp = CheckedArray::toString();
+			reverse(temp.begin(), temp.end());
+			return temp;
+		}
+		catch (string msg) {
+			throw(msg);
+		}
 	}
 
 	int Byte::toInt() {
@@ -136,22 +151,26 @@ namespace zoey {
 		return false;
 	}
 
-	Byte::Byte() : Byte(0) {
-	}
+	Byte::Byte() : Byte(0) {}
 
 	Byte::Byte(int val) : CheckedArray(8) {
 		this->setValue(val);
 	}
 
 	Byte::Byte(int ar[]) : CheckedArray(8) {
-		for (int i = 0; i < 8; i++) {
-			if (ar[i] == 1 || ar[i] == 0) {		// input array verification
-				set(7 - i, ar[i]);		// bits is reversed ar[]
+		try {
+			for (int i = 0; i < 8; i++) {
+				if (ar[i] == 1 || ar[i] == 0) {		// input array verification
+					set(7 - i, ar[i]);				// bits is reversed ar[]
+				}
+				else {
+					cout << "Input array does not contain only 1s and 0s" << endl;
+					return;
+				}
 			}
-			else {
-				cout << "Input array does not contain only 1s and 0s" << endl;
-				return;
-			}
+		}
+		catch (string msg) {
+			throw(msg);
 		}
 	}
 }

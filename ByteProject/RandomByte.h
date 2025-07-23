@@ -1,8 +1,8 @@
 /*
-Main.cpp
+RandomByte.h
 Zoey Anderson
-Assignment 12 - Polymorphism
-7/17/2025
+Assignment 13 - Exceptions
+7/22/2025
 */
 
 #ifndef RANDOMBYTE
