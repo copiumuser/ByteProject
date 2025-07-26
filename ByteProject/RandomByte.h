@@ -1,8 +1,8 @@
 /*
 RandomByte.h
 Zoey Anderson
-Assignment 13 - Exceptions
-7/22/2025
+Assignment 14 - Templates
+7/25/2025
 */
 
 #ifndef RANDOMBYTE

@@ -1,8 +1,8 @@
 /*
 Main.cpp
 Zoey Anderson
-Assignment 13 - Exceptions
-7/22/2025
+Assignment 14 - Templates
+7/25/2025
 */
 
 #include <iostream>
@@ -376,7 +376,7 @@ void errorDemo() {
 	}
 	cout << "\nCheckedArray t(-1): " << endl;
 	try {
-		CheckedArray t(-1);
+		CheckedArray<int> t(-1);
 	}
 	catch (string msg) {
 		cout << msg << endl;

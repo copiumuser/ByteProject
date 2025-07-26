@@ -1,8 +1,8 @@
 /*
 Byte.h
 Zoey Anderson
-Assignment 13 - Exceptions
-7/22/2025
+Assignment 14 - Templates
+7/25/2025
 */
 
 #ifndef BYTE
@@ -15,7 +15,7 @@ Assignment 13 - Exceptions
 using std::string;
 
 namespace zoey {
-	class Byte : public CheckedArray {
+	class Byte : public CheckedArray<int> {
 	private:
 		int bitsToInt();
 	public:
